@@ -1,21 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-import Carousel from '../components/carousel'
-import Footer from '../components/footer'
+import Carousel from '../components/Carousel'
+import Footer from '../components/Footer'
 import Head from 'next/head'
 import MovieList from '../components/movieList'
-import Navbar from '../components/navbar'
-import SideMenu from '../components/sidemenu'
+import Navbar from '../components/Navbar'
+import SideMenu from '../components/SideMenu'
 
-const Home = () => {
-  const [count, setCount] = useState(0)
+import { getMovies } from '../data'
 
-  const increment = () => {
-    setCount(count + 1)
-  }
-  const decrement = () => {
-    setCount(count - 1)
-  }
+const Home = props => {
+  const [movies, setMovies] = useState([])
+  const [errorMessage, setErrorMessage] = useState('')
+
+  // useEffect(() => {
+  //   getMovies()
+  //     .then(res => setMovies(res))
+  //     .catch(err => setErrorMessage(err))
+  // }, [])
+
   return (
     <div>
       <Head>
@@ -45,24 +48,19 @@ const Home = () => {
       <Navbar />
       <div className="homePageContainer">
         <div className="container">
-          <button className="btn btn-primary" onClick={increment}>
-            Increment
-          </button>
-          <button className="btn btn-primary" onClick={decrement}>
-            Decrement
-          </button>
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu
-                count={count}
-                appName={'Movie DB'}
-                clickHandler={() => console.log('nuhhhhh')}
-              />
+              <SideMenu appName={'Movie DB'} />
             </div>
             <div className="col-lg-9">
               <Carousel />
               <div className="row">
-                <MovieList count={count} />
+                {errorMessage ? (
+                  <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                  </div>
+                ) : null}
+                <MovieList movies={props.movies} />
               </div>
             </div>
           </div>
@@ -76,6 +74,13 @@ const Home = () => {
       `}</style>
     </div>
   )
+}
+
+Home.getInitialProps = async () => {
+  const movies = await getMovies()
+  return {
+    movies,
+  }
 }
 
 export default Home

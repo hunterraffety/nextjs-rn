@@ -4,9 +4,10 @@
 
 $primary-color: #482ff7;
 $secondary-color: #fc5c9c;
+$black: #000000;
 
 body {
-  color: $primary-color;
+  color: $black;
   @apply text-base antialiased;
 }
 
