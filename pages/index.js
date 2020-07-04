@@ -20,7 +20,7 @@ const Home = props => {
   // }, [])
 
   return (
-    <div>
+    <>
       <Head>
         <title>Home</title>
         <link
@@ -46,33 +46,33 @@ const Home = props => {
         ></script>
       </Head>
       <Navbar />
-      <div className="homePageContainer">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-3">
-              <SideMenu appName={'Movie DB'} />
-            </div>
-            <div className="col-lg-9">
-              <Carousel />
-              <div className="row">
-                {errorMessage ? (
-                  <div className="alert alert-danger" role="alert">
-                    {errorMessage}
-                  </div>
-                ) : null}
-                <MovieList movies={props.movies} />
-              </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3">
+            <SideMenu appName={'Movie DB'} />
+          </div>
+          <div className="col-lg-9">
+            <Carousel />
+            <div className="row">
+              {errorMessage ? (
+                <div className="alert alert-danger" role="alert">
+                  {errorMessage}
+                </div>
+              ) : null}
+              <MovieList movies={props.movies} />
             </div>
           </div>
         </div>
       </div>
+
       <Footer />
       <style jsx>{`
         .homePageContainer {
           padding-top: 80px;
         }
       `}</style>
-    </div>
+    </>
   )
 }
 
