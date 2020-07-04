@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import Carousel from '../components/carousel'
 import Footer from '../components/footer'
 import Head from 'next/head'
@@ -6,6 +8,14 @@ import Navbar from '../components/navbar'
 import SideMenu from '../components/sidemenu'
 
 const Home = () => {
+  const [count, setCount] = useState(0)
+
+  const increment = () => {
+    setCount(count + 1)
+  }
+  const decrement = () => {
+    setCount(count - 1)
+  }
   return (
     <div>
       <Head>
@@ -32,25 +42,34 @@ const Home = () => {
           crossorigin="anonymous"
         ></script>
       </Head>
-
       <Navbar />
-
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-3">
-            <SideMenu />
-          </div>
-
-          <div className="col-lg-9">
-            <Carousel />
-
-            <div className="row">
-              <MovieList />
+      <div className="homePageContainer">
+        <div className="container">
+          <button className="btn btn-primary" onClick={increment}>
+            Increment
+          </button>
+          <button className="btn btn-primary" onClick={decrement}>
+            Decrement
+          </button>
+          <div className="row">
+            <div className="col-lg-3">
+              <SideMenu count={count} />
+            </div>
+            <div className="col-lg-9">
+              <Carousel />
+              <div className="row">
+                <MovieList count={count} />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <Footer />
+      <style jsx>{`
+        .homePageContainer {
+          padding-top: 80px;
+        }
+      `}</style>
     </div>
   )
 }

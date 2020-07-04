@@ -4,6 +4,9 @@ export default class MovieList extends Component {
   render() {
     return (
       <>
+        <div className="buttonContainer">
+          <h1>{this.props.count}</h1>
+        </div>
         <div className="col-lg-4 col-md-6 mb-4">
           <div className="card h-100">
             <a href="#">

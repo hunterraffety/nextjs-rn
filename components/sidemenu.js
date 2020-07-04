@@ -1,6 +1,4 @@
-import React from 'react'
-
-const SideMenu = () => {
+const SideMenu = ({ count }) => {
   return (
     <div className="sideMenuContainer">
       <h1 className="my-4">Shop Name</h1>
@@ -14,6 +12,9 @@ const SideMenu = () => {
         <a href="#" className="list-group-item">
           Category 3
         </a>
+      </div>
+      <div className="countContainer">
+        <h1>{count}</h1>
       </div>
     </div>
   )
