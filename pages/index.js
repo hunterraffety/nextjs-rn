@@ -38,7 +38,7 @@ const Home = props => {
         ></script>
       </Head>
 
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col-lg-3">

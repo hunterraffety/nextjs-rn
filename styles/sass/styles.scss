@@ -8,7 +8,8 @@ $black: #000000;
 
 body {
   color: $black;
-  @apply text-base antialiased;
+  @apply text-base;
+  @apply antialiased;
 }
 
 h1 {
@@ -16,5 +17,5 @@ h1 {
 }
 
 // .btn {
-//   @apply inline-block px-24 py-8 rounded text-white;
+//   @apply inline-block px-24 py-8 rounded text-black;
 // }

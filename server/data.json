@@ -61,5 +61,15 @@
     "longDesc": ".getInitialProps = async ({ query }) => {\n  const movie = await getMovieById(query.id)\n  return { movie }\n}",
     "genre": "adventure",
     "id": "8bd6l"
+  },
+  {
+    "name": "asdsadasdasdasdasdasd",
+    "description": "aasdassdsdasdasdad",
+    "rating": "3",
+    "image": "asdsad",
+    "cover": "asdasd",
+    "longDesc": "asdasdsad",
+    "genre": "drama,music,adventure",
+    "id": "vevuv"
   }
 ]

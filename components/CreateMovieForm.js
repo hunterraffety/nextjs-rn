@@ -1,23 +1,20 @@
 import { useState, useEffect } from 'react'
 
 const CreateMovieForm = props => {
-  const { initialData } = props
-  const [form, setForm] = useState({
+  const { initialData, submitButton } = props
+
+  const defaultData = {
     name: '',
     description: '',
     rating: '',
     image: '',
     cover: '',
     longDesc: '',
-  })
-  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false)
+  }
 
-  useEffect(() => {
-    if (initialData) {
-      setForm(initialData)
-      setIsInitialDataLoaded(true)
-    }
-  })
+  const formData = initialData ? { ...initialData } : defaultData
+
+  const [form, setForm] = useState(formData)
 
   const handleChange = e => {
     const target = e.target
@@ -45,7 +42,7 @@ const CreateMovieForm = props => {
   }
 
   const submitForm = () => {
-    props.handleSubmit({ ...form })
+    props.handleFormSubmit({ ...form })
   }
 
   return (
@@ -145,7 +142,7 @@ const CreateMovieForm = props => {
         </select>
       </div>
       <button type="button" onClick={submitForm}>
-        Create
+        {submitButton || 'Create'}
       </button>
     </form>
   )

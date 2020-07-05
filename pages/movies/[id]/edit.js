@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import CreateMovieForm from '../../../components/CreateMovieForm'
-import { getMovieById } from '../../../data'
+import { getMovieById, updateMovie } from '../../../data'
+import Router from 'next/router'
 
 const EditMovie = props => {
   const { movie } = props
 
-  const handleCreateMovie = movie => {
-    createMovie(movie)
-      .then(movies => {
-        // console.log(JSON.stringify(movies))
-        modal.closeModal()
-        router.push('/')
+  const handleUpdateMovie = movie => {
+    updateMovie(movie)
+      .then(updatedMovie => {
+        Router.push(`/movies/${movie.id}`)
       })
       .catch(err => console.log(err))
   }
@@ -18,7 +17,11 @@ const EditMovie = props => {
   return (
     <div>
       <h1>Edit Movie</h1>
-      <CreateMovieForm initialData={movie} />
+      <CreateMovieForm
+        initialData={movie}
+        handleFormSubmit={handleUpdateMovie}
+        submitButton="Update"
+      />
     </div>
   )
 }
