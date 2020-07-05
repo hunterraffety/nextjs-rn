@@ -11,10 +11,19 @@ import { getMovies, getCategories } from '../data'
 
 const Home = props => {
   const { movies, images, categories } = props
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState('all')
 
   const changeCategory = category => {
     setFilter(category)
+  }
+
+  const filterMovies = movies => {
+    if (filter === 'all') {
+      return movies
+    }
+    return movies.filter(movie => {
+      return movie.genre && movie.genre.includes(filter)
+    })
   }
 
   return (
@@ -57,8 +66,9 @@ const Home = props => {
           </div>
           <div className="col-lg-9">
             <Carousel images={images} />
+            <h1>Displaying {filter} movies.</h1>
             <div className="row">
-              <MovieList movies={movies || []} />
+              <MovieList movies={filterMovies(movies) || []} />
             </div>
           </div>
         </div>
