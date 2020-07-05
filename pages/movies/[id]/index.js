@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import { getMovieById, deleteMovie } from '../../../data'
 
 const Movie = props => {
-  console.log(props)
   const router = useRouter()
   const { id } = router.query
   const { movie } = props
@@ -26,6 +25,9 @@ const Movie = props => {
         <p>{movie.longDesc}</p>
         <button role="button" onClick={() => handleDeleteMovie(id)}>
           Delete
+        </button>
+        <button role="button" onClick={() => router.push(`/movies/${id}/edit`)}>
+          Edit
         </button>
       </div>
     </div>

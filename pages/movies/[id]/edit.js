@@ -3,26 +3,29 @@ import CreateMovieForm from '../../../components/CreateMovieForm'
 import { getMovieById } from '../../../data'
 
 const EditMovie = props => {
-  const [movie, setMovie] = useState({})
-  useEffect(() => {
-    const { id } = props.query
-    getMovieById(id).then(movie => {
-      setMovie(movie)
-    })
-  }, [])
+  const { movie } = props
 
-  console.log(movie)
+  const handleCreateMovie = movie => {
+    createMovie(movie)
+      .then(movies => {
+        // console.log(JSON.stringify(movies))
+        modal.closeModal()
+        router.push('/')
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div>
-      <h1>Edit the Movie</h1>
+      <h1>Edit Movie</h1>
       <CreateMovieForm initialData={movie} />
     </div>
   )
 }
 
-EditMovie.getInitialProps = ({ query }) => {
-  return { query }
+EditMovie.getInitialProps = async ({ query }) => {
+  const movie = await getMovieById(query.id)
+  return { movie }
 }
 
 export default EditMovie
