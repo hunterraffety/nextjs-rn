@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+
 // components
 import CreateMovieForm from './CreateMovieForm'
 import Link from 'next/link'
@@ -9,13 +12,15 @@ import { createMovie } from '../data'
 
 const SideMenu = props => {
   const { appName, categories } = props
+  const router = useRouter()
   let modal = null
 
   const handleCreateMovie = movie => {
     createMovie(movie)
       .then(movies => {
-        console.log(JSON.stringify(movies))
+        // console.log(JSON.stringify(movies))
         modal.closeModal()
+        router.push('/')
       })
       .catch(err => console.log(err))
   }
