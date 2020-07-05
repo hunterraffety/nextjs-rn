@@ -7,18 +7,10 @@ import MovieList from '../components/movieList'
 import Navbar from '../components/Navbar'
 import SideMenu from '../components/SideMenu'
 
-import { getMovies } from '../data'
+import { getMovies, getCategories } from '../data'
 
 const Home = props => {
-  const [movies, setMovies] = useState([])
-  const [errorMessage, setErrorMessage] = useState('')
-
-  // useEffect(() => {
-  //   getMovies()
-  //     .then(res => setMovies(res))
-  //     .catch(err => setErrorMessage(err))
-  // }, [])
-
+  const { movies, images, categories } = props
   return (
     <>
       <Head>
@@ -45,27 +37,21 @@ const Home = props => {
           crossorigin="anonymous"
         ></script>
       </Head>
-      <Navbar />
 
+      {/* <Navbar /> */}
       <div className="container">
         <div className="row">
           <div className="col-lg-3">
-            <SideMenu appName={'Movie DB'} />
+            <SideMenu appName={'Movie DB'} categories={categories} />
           </div>
           <div className="col-lg-9">
-            <Carousel />
+            <Carousel images={images} />
             <div className="row">
-              {errorMessage ? (
-                <div className="alert alert-danger" role="alert">
-                  {errorMessage}
-                </div>
-              ) : null}
-              <MovieList movies={props.movies} />
+              <MovieList movies={movies || []} />
             </div>
           </div>
         </div>
       </div>
-
       <Footer />
       <style jsx>{`
         .homePageContainer {
@@ -78,8 +64,17 @@ const Home = props => {
 
 Home.getInitialProps = async () => {
   const movies = await getMovies()
+  const categories = await getCategories()
+  const images = movies.map(movie => ({
+    id: `image-${movie.id}`,
+    url: movie.image,
+    name: movie.name,
+  }))
+
   return {
     movies,
+    images,
+    categories,
   }
 }
 

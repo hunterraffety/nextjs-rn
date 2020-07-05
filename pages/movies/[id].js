@@ -1,32 +1,30 @@
 import { useRouter } from 'next/router'
+import { getMovieById } from '../../data'
 
-const Movie = () => {
+const Movie = props => {
+  console.log(props)
   const router = useRouter()
   const { id } = router.query
-
+  const { movie } = props
   return (
     <div className="container">
       <div className="jumbotron">
-        <h1 className="display-4">Movie with id: {id}</h1>
-        <p className="lead">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quae
-          harum iste quo expedita! Quaerat consequuntur fugiat vitae provident
-          corrupti laudantium dolore tempore illum quae, voluptatum reiciendis,
-          itaque tenetur sint quo fugit odio. Odio, ipsam voluptas? Doloribus,
-          repellendus labore. Porro, asperiores culpa accusamus quae neque
-          exercitationem? Nemo temporibus itaque voluptate?
-        </p>
+        <h1 className="display-4">{movie.name}</h1>
+        <p className="lead">{movie.genre.toUpperCase()}</p>
+        <img src={movie.image} />
         <hr className="my-4" />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis
-          totam veritatis est expedita porro consequatur.
-        </p>
-        <a href="#" className="btn btn-lg" role="button">
+        <p>{movie.description}</p>
+        <a href="#" className="" role="button">
           Learn More
         </a>
       </div>
     </div>
   )
+}
+
+Movie.getInitialProps = async ({ query }) => {
+  const movie = await getMovieById(query.id)
+  return { movie }
 }
 
 export default Movie
