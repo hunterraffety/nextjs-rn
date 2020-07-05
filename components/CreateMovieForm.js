@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const MovieCreateForm = props => {
+  const { initialData } = props
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -9,6 +10,14 @@ const MovieCreateForm = props => {
     cover: '',
     longDesc: '',
   })
+  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false)
+
+  useEffect(() => {
+    if (initialData) {
+      setForm(initialData)
+      setIsInitialDataLoaded(true)
+    }
+  }, [isInitialDataLoaded])
 
   const handleChange = e => {
     const target = e.target
@@ -41,7 +50,7 @@ const MovieCreateForm = props => {
 
   return (
     <form>
-      {/* {JSON.stringify(form)} */}
+      {JSON.stringify(initialData)}
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input

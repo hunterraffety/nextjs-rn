@@ -6,6 +6,8 @@
 .pnp.js
 yarn.lock
 package-json.lock
+.quokka
+.prettierrc
 
 # testing
 /coverage
