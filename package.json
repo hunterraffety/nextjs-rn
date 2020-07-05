@@ -5,6 +5,7 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,scss,css,html,json,md,less,tsx}\"",
     "dev": "next dev",
+    "server": "node server/index.js",
     "build": "next build",
     "start": "next start"
   },
@@ -12,6 +13,7 @@
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@zeit/next-sass": "^1.0.1",
     "autoprefixer": "^9.8.4",
+    "express": "^4.17.1",
     "global": "^4.4.0",
     "next": "9.4.4",
     "node-sass": "^4.14.1",
