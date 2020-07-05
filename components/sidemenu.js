@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import CreateMovieForm from './CreateMovieForm'
 import Link from 'next/link'
 import Modal from './Modal'
-import MovieCreateForm from './CreateMovieForm'
 
 // functions
 import { createMovie } from '../data'
@@ -28,7 +27,7 @@ const SideMenu = props => {
   return (
     <div className="sideMenuContainer">
       <Modal ref={el => (modal = el)} hasSubmit={false}>
-        <MovieCreateForm handleSubmit={handleCreateMovie} />
+        <CreateMovieForm handleSubmit={handleCreateMovie} />
       </Modal>
       <h1 className="my-4">{appName}</h1>
       <div className="list-group">

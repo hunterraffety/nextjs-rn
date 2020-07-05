@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
-const MovieCreateForm = props => {
+const CreateMovieForm = props => {
+  console.log(props)
   const { initialData } = props
   const [form, setForm] = useState({
     name: '',
@@ -17,7 +18,7 @@ const MovieCreateForm = props => {
       setForm(initialData)
       setIsInitialDataLoaded(true)
     }
-  }, [isInitialDataLoaded])
+  })
 
   const handleChange = e => {
     const target = e.target
@@ -151,4 +152,4 @@ const MovieCreateForm = props => {
   )
 }
 
-export default MovieCreateForm
+export default CreateMovieForm
