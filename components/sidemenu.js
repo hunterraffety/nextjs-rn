@@ -10,7 +10,7 @@ import Modal from './Modal'
 import { createMovie } from '../data'
 
 const SideMenu = props => {
-  const { appName, categories } = props
+  const { appName, categories, changeCategory } = props
   const router = useRouter()
   let modal = null
 
@@ -33,7 +33,14 @@ const SideMenu = props => {
       <div className="list-group">
         {categories.map((category, idx) => {
           return (
-            <a href="#" className="list-group-item" key={idx}>
+            <a
+              href="#"
+              className={`list-group-item ${
+                props.activeCategory === category.name ? 'active' : ''
+              }`}
+              key={category.id}
+              onClick={() => changeCategory(category.name)}
+            >
               {category.name}
             </a>
           )

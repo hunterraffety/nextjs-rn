@@ -53,16 +53,6 @@
     "id": "xu9cv"
   },
   {
-    "name": "asdasd",
-    "description": "asdasd",
-    "rating": "3",
-    "image": ".getInitialProps = async ({ query }) => {   const movie = await getMovieById(query.id)   return { movie } }",
-    "cover": ".getInitialProps = async ({ query }) => {   const movie = await getMovieById(query.id)   return { movie } }",
-    "longDesc": ".getInitialProps = async ({ query }) => {\n  const movie = await getMovieById(query.id)\n  return { movie }\n}",
-    "genre": "adventure",
-    "id": "8bd6l"
-  },
-  {
     "name": "asdsadasdasdasdasdasd",
     "description": "aasdassdsdasdasdad",
     "rating": "3",
